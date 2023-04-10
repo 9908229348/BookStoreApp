@@ -55,8 +55,8 @@ class HomeScreenState extends State<HomeScreen> {
               crossAxisCount: MediaQuery.of(context).size.width > 600
                   ? webCrossAxisCount
                   : mobileCrossAxisCount,
-              mainAxisSpacing: 4.0,
-              crossAxisSpacing: 4.0,
+              mainAxisSpacing: axisSpacingForHome,
+              crossAxisSpacing: axisSpacingForHome,
               childAspectRatio: MediaQuery.of(context).size.width > 600
                   ? MediaQuery.of(context).size.width /
                       (MediaQuery.of(context).size.height * 2)
@@ -93,11 +93,11 @@ class HomeScreenState extends State<HomeScreen> {
       leading: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          const SizedBox(
-              height: 30,
-              width: 30,
-              child: const Image(
+        children: const [
+          SizedBox(
+              height: smallContainersize,
+              width: smallContainersize,
+              child: Image(
                 image: AssetImage('images/book_image.jpeg'),
                 fit: BoxFit.fill,
               )),

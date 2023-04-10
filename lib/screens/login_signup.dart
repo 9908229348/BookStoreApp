@@ -1,6 +1,7 @@
 import 'package:bookstore_app/resources/authmethods.dart';
 import 'package:bookstore_app/screens/home_screen.dart';
 import 'package:bookstore_app/utils/colors.dart';
+import 'package:bookstore_app/utils/global_variables.dart';
 import 'package:bookstore_app/utils/snackbar.dart';
 import 'package:bookstore_app/utils/validator.dart';
 import 'package:bookstore_app/widgets/textfield.dart';
@@ -424,8 +425,8 @@ class _LoginSignupScreenState extends State<LoginSignupScreen> {
                     child: Row(
                       children: [
                         Container(
-                          width: 30,
-                          height: 30,
+                          width: smallContainersize,
+                          height: smallContainersize,
                           margin: const EdgeInsets.only(right: 8),
                           decoration: BoxDecoration(
                               color: _isMale

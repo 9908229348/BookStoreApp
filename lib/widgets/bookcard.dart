@@ -1,6 +1,9 @@
 import 'package:bookstore_app/api/firebasemanager.dart';
 import 'package:bookstore_app/models/book.dart';
+import 'package:bookstore_app/utils/colors.dart';
 import 'package:flutter/material.dart';
+
+import '../utils/global_variables.dart';
 
 class BookCard extends StatefulWidget {
   Book book;
@@ -32,8 +35,8 @@ class _BookCardState extends State<BookCard> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Container(
-                height: 100,
-                width: 100,
+                height: cartBookContainerSize,
+                width: cartBookContainerSize,
                 color: Colors.blueGrey[100],
                 child: widget.isNetworkImage
                     ? Image.network(widget.book.image!)
@@ -47,23 +50,25 @@ class _BookCardState extends State<BookCard> {
             Text(
               widget.book.title!,
               style: const TextStyle(
-                  fontSize: 16,
-                  color: Colors.black,
+                  fontSize: smallFontSize,
+                  color: ColorsPalette.colorBlack,
                   fontWeight: FontWeight.bold),
             ),
             Text(
               "by ${widget.book.author!}",
-              style: TextStyle(color: Colors.grey[500], fontSize: 13),
+              style:
+                  TextStyle(color: Colors.grey[500], fontSize: smallFontSize),
             ),
             Text(
               'Rs.${widget.book.price}',
-              style: const TextStyle(color: Colors.black),
+              style: const TextStyle(color: ColorsPalette.colorBlack),
             ),
             const SizedBox(
               height: 10,
             ),
             Container(
-                padding: const EdgeInsets.only(left: 10, right: 10),
+                padding: const EdgeInsets.only(
+                    left: cartBookPadding, right: cartBookPadding),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -73,10 +78,11 @@ class _BookCardState extends State<BookCard> {
                             primary:
                                 widget.isCarted ? Colors.green : Colors.red),
                         onPressed: () async {
-                          if (widget.isCarted)
+                          if (widget.isCarted) {
                             removeFromCart();
-                          else
+                          } else {
                             addToCart();
+                          }
                         },
                         child: widget.isCarted
                             ? const Text("Added to Cart")

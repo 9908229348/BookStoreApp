@@ -2,10 +2,13 @@ import 'package:bookstore_app/models/Details.dart';
 import 'package:bookstore_app/models/book.dart';
 import 'package:bookstore_app/resources/authmethods.dart';
 import 'package:bookstore_app/screens/home_screen.dart';
+import 'package:bookstore_app/utils/colors.dart';
 import 'package:bookstore_app/widgets/details_text_field.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+
+import '../utils/global_variables.dart';
 
 class BookView extends HomeScreen {
   Book book;
@@ -85,7 +88,7 @@ class _BookViewState extends HomeScreenState {
     return Scaffold(
       appBar: super.appBarWidget(context),
       body: SingleChildScrollView(
-        padding: const EdgeInsets.all(20),
+        padding: const EdgeInsets.all(screenPadding),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
@@ -94,11 +97,11 @@ class _BookViewState extends HomeScreenState {
                 width: MediaQuery.of(context).size.width,
                 decoration: BoxDecoration(
                   border: Border.all(
-                    color: Colors.black,
+                    color: ColorsPalette.colorBlack,
                   ),
                 ),
                 child: Container(
-                  padding: const EdgeInsets.only(left: 10),
+                  padding: const EdgeInsets.only(left: paddingFifteen),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -109,7 +112,8 @@ class _BookViewState extends HomeScreenState {
                       const Text(
                         "My cart 7",
                         style: TextStyle(
-                            fontSize: 20, fontWeight: FontWeight.bold),
+                            fontSize: smallFontSize,
+                            fontWeight: FontWeight.bold),
                       ),
                       const SizedBox(
                         height: 10,
@@ -130,7 +134,7 @@ class _BookViewState extends HomeScreenState {
                             children: [
                               Text(
                                 "${book.title}",
-                                style: const TextStyle(fontSize: 15),
+                                style: const TextStyle(fontSize: smallFontSize),
                               ),
                               const SizedBox(
                                 height: 10,
@@ -138,7 +142,8 @@ class _BookViewState extends HomeScreenState {
                               Text(
                                 "by ${book.author}",
                                 style: const TextStyle(
-                                    fontSize: 15, color: Colors.black54),
+                                    fontSize: smallFontSize,
+                                    color: Colors.black54),
                               ),
                               const SizedBox(
                                 height: 10,
@@ -146,7 +151,8 @@ class _BookViewState extends HomeScreenState {
                               Text(
                                 "Rs.${book.price}",
                                 style: const TextStyle(
-                                    fontSize: 15, fontWeight: FontWeight.bold),
+                                    fontSize: smallFontSize,
+                                    fontWeight: FontWeight.bold),
                               ),
                               Row(
                                 children: <Widget>[
@@ -159,37 +165,38 @@ class _BookViewState extends HomeScreenState {
                                       });
                                     },
                                     child: Container(
-                                      width: 30.0,
-                                      height: 30.0,
-                                      margin: const EdgeInsets.all(10.0),
+                                      width: smallContainersize,
+                                      height: smallContainersize,
+                                      margin:
+                                          const EdgeInsets.all(paddingFifteen),
                                       decoration: BoxDecoration(
-                                          borderRadius:
-                                              BorderRadius.circular(50),
+                                          borderRadius: BorderRadius.circular(
+                                              circularBorderRadius),
                                           color: Colors.black26),
                                       child: const Center(
                                         child: Text(
                                           "-",
                                           style: TextStyle(
-                                              color: Colors.black,
+                                              color: ColorsPalette.colorBlack,
                                               fontWeight: FontWeight.bold,
-                                              fontSize: 17.0),
+                                              fontSize: smallFontSize),
                                         ),
                                       ),
                                     ),
                                   ),
                                   Container(
-                                    height: 30,
-                                    width: 40,
+                                    height: smallContainersize,
+                                    width: smallContainersize,
                                     decoration: BoxDecoration(
-                                        border:
-                                            Border.all(color: Colors.black)),
+                                        border: Border.all(
+                                            color: ColorsPalette.colorBlack)),
                                     child: Center(
                                       child: Text(
                                         "$_count",
                                         style: const TextStyle(
-                                            color: Colors.black,
+                                            color: ColorsPalette.colorBlack,
                                             fontWeight: FontWeight.bold,
-                                            fontSize: 17.0),
+                                            fontSize: smallFontSize),
                                       ),
                                     ),
                                   ),
@@ -200,19 +207,20 @@ class _BookViewState extends HomeScreenState {
                                       });
                                     },
                                     child: Container(
-                                      width: 30.0,
-                                      height: 30.0,
-                                      margin: const EdgeInsets.all(10.0),
+                                      width: smallContainersize,
+                                      height: smallContainersize,
+                                      margin:
+                                          const EdgeInsets.all(paddingFifteen),
                                       decoration: BoxDecoration(
                                           color: Colors.black26,
-                                          borderRadius:
-                                              BorderRadius.circular(50)),
+                                          borderRadius: BorderRadius.circular(
+                                              circularBorderRadius)),
                                       child: const Center(
                                         child: Text(
                                           "+",
                                           style: TextStyle(
-                                              color: Colors.black,
-                                              fontSize: 17.0,
+                                              color: ColorsPalette.colorBlack,
+                                              fontSize: smallFontSize,
                                               fontWeight: FontWeight.bold),
                                         ),
                                       ),
@@ -234,12 +242,12 @@ class _BookViewState extends HomeScreenState {
                       Align(
                           alignment: Alignment.bottomRight,
                           child: Container(
-                            padding: const EdgeInsets.all(15),
+                            padding: const EdgeInsets.all(screenPadding),
                             child: ElevatedButton(
                               style: ElevatedButton.styleFrom(
                                   primary: Colors.blue[900],
                                   textStyle: const TextStyle(
-                                      fontSize: 15,
+                                      fontSize: smallFontSize,
                                       fontWeight: FontWeight.bold)),
                               child: const Text("Place Order"),
                               onPressed: () {},
@@ -258,8 +266,10 @@ class _BookViewState extends HomeScreenState {
                 });
               },
               child: Container(
-                padding: const EdgeInsets.only(left: 10),
-                height: _isExpanded ? 730 : 60,
+                padding: const EdgeInsets.only(left: paddingFifteen),
+                height: _isExpanded
+                    ? expandedContainerSize
+                    : collapsedContainerSize,
                 width: MediaQuery.of(context).size.width,
                 decoration: BoxDecoration(
                   border: Border.all(
@@ -278,7 +288,7 @@ class _BookViewState extends HomeScreenState {
                       children: [
                         const Text(
                           "Customer Details",
-                          style: TextStyle(fontSize: 17),
+                          style: TextStyle(fontSize: smallFontSize),
                         ),
                         IconButton(
                             onPressed: () {
@@ -345,7 +355,7 @@ class _BookViewState extends HomeScreenState {
         ),
         const Text(
           "Type",
-          style: TextStyle(fontSize: 15),
+          style: TextStyle(fontSize: smallFontSize),
         ),
         ListTile(
           leading: Radio<String>(
@@ -386,12 +396,13 @@ class _BookViewState extends HomeScreenState {
         Align(
             alignment: Alignment.bottomRight,
             child: Container(
-              padding: const EdgeInsets.all(15),
+              padding: const EdgeInsets.all(paddingFifteen),
               child: ElevatedButton(
                   style: ElevatedButton.styleFrom(
                       primary: Colors.blue[900],
                       textStyle: const TextStyle(
-                          fontSize: 15, fontWeight: FontWeight.bold)),
+                          fontSize: smallFontSize,
+                          fontWeight: FontWeight.bold)),
                   child: const Text("Continue"),
                   onPressed: addDetails),
             ))
